@@ -1,0 +1,25 @@
+{
+  "name": "flip7",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
+    "UV_LINK_MODE": "copy",
+    "PLAYWRIGHT_BROWSERS_PATH": "/opt/ms-playwright"
+  },
+  "mounts": [
+    "source=flip7-claude-config,target=/home/vscode/.claude,type=volume",
+    "source=flip7-gh-config,target=/home/vscode/.config/gh,type=volume"
+  ],
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": ["anthropic.claude-code", "ms-python.python"]
+    }
+  }
+}
